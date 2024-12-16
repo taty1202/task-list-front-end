@@ -10,13 +10,11 @@ const App = () => {
     {id:3, title:'Walk the dog', isComplete:false},
   ]);
   const toggleComplete = (id) => {
-    const updateTasks = tasks.map((task) => task.id === id ? {...task, isCommplete: !task.isComplete} :task
-    );
-    setTasks(updateTasks);
+    // console.log('toggleComplete');
+    setTasks(tasks => tasks.map((task) => task.id === id ? {...task, isComplete: !task.isComplete} :task));
   };
   const deleteTask= (id) => {
-    const updatedTasks = tasks.filter((task) => task.id !== id);
-    setTasks(updatedTasks);
+    setTasks(tasks.filter((task) => task.id !== id));
   };
   return (
     <div className="App">
