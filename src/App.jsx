@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskList from './components/TaskList.jsx';
+import NewTaskForm from './components/NewTaskForm.jsx';
 import './App.css';
 
 
@@ -18,6 +19,16 @@ const App = () => {
         console.error('Error fetching data: ', error);
       });
   }, []);
+
+  const addTask = (newTasks) => {
+    axios.post(API_BASE_URL, newTasks)
+      .then((response) => {
+        setTasks((tasks) => [...tasks, response.data]);
+      })
+      .catch(error => {
+        console.error('Error adding task: ', error);
+      });
+  };
 
 
   const toggleComplete = (id) => {
@@ -52,6 +63,7 @@ const App = () => {
         <h1>Ada&apos;s Task List</h1>
       </header>
       <main>
+        <div>{<NewTaskForm onTaskSubmit={addTask}/>}</div>
         <div>{<TaskList tasks={tasks} onToggleComplete={toggleComplete} onDeleteTask={deleteTask} />}</div>
       </main>
     </div>
