@@ -20,10 +20,12 @@ const App = () => {
       });
   }, []);
 
-  const addTask = (newTasks) => {
+  const onTaskSubmit = (newTasks) => {
+    console.log('Sending new task:', newTasks);
     axios.post(API_BASE_URL, newTasks)
       .then((response) => {
-        setTasks((tasks) => [...tasks, response.data]);
+        console.log('Response:', response.data);
+        setTasks((tasks) => [(response.data), ...tasks]);
       })
       .catch(error => {
         console.error('Error adding task: ', error);
@@ -63,7 +65,7 @@ const App = () => {
         <h1>Ada&apos;s Task List</h1>
       </header>
       <main>
-        <div>{<NewTaskForm onTaskSubmit={addTask}/>}</div>
+        <div>{<NewTaskForm onTaskSubmit={onTaskSubmit}/>}</div>
         <div>{<TaskList tasks={tasks} onToggleComplete={toggleComplete} onDeleteTask={deleteTask} />}</div>
       </main>
     </div>

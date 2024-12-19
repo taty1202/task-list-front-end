@@ -1,44 +1,38 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-// import './NewTaskForm.css';
+
 
 const NewTaskForm = ({ onTaskSubmit }) => {
-  const [formData, setFormData] = useState({
-    title: '',
-  });
+  const [formData, setFormData] = useState('');
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setFormData(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (formData.title.trim() === '') return;
+    const newTask = {
+      title: formData,
+      isComplete: false,
+    };
 
-    onTaskSubmit(formData); // Pass data to App for API call
-    setFormData({ title: '' });
+    console.log('Submitting new task:', newTask); // Debugging line
+
+    onTaskSubmit(newTask); // Pass data to App for API call
+    setFormData('');
   };
 
   return (
     <form className="new-task-form" onSubmit={handleSubmit}>
       <label htmlFor="title">Task:</label>
-      <input
-        id="title"
-        name="title"
-        type="text"
-        value={formData.title}
-        onChange={handleChange}
-        placeholder="Enter task"
-        required
-      />
-      <button type="submit">Add Task</button>
+      <input type="text" id="title" name="title" value={formData} onChange={handleChange} />
+      <div>
+        <input type="submit" value="Add task" />
+      </div>
     </form>
   );
 };
 
-NewTaskForm.propTypes = {
-  onTaskSubmit: PropTypes.func.isRequired,
-};
+NewTaskForm.propTypes = { onTaskSubmit: PropTypes.func.isRequired };
 
 export default NewTaskForm;
