@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import TaskList from './components/TaskList.jsx';
 import NewTaskForm from './components/NewTaskForm.jsx';
 import './App.css';
@@ -59,6 +61,7 @@ const App = () => {
         console.error('Error deleting task: ', error);
       });
   };
+
   return (
     <div className="App">
       <header className="App-header">

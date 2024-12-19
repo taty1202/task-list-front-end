@@ -13,8 +13,8 @@ const Task = ({ id, title, isComplete, onToggleComplete, onDeleteTask }) => {
         className={`tasks__item__toggle ${buttonClass}`}
         onClick={() => {
         // console.log('hello');
-        onToggleComplete(id)}
-      }>
+          onToggleComplete(id)}
+        }>
         {title}
       </button>
       <button className="tasks__item__remove button" onClick={() => onDeleteTask(id)}>x
