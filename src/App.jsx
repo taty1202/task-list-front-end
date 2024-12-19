@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import TaskList from './components/TaskList.jsx';
 import NewTaskForm from './components/NewTaskForm.jsx';
 import './App.css';

@@ -13,10 +13,9 @@ const NewTaskForm = ({ onTaskSubmit }) => {
     event.preventDefault();
     const newTask = {
       title: formData,
+      description: '',
       isComplete: false,
     };
-
-    console.log('Submitting new task:', newTask); // Debugging line
 
     onTaskSubmit(newTask); // Pass data to App for API call
     setFormData('');
